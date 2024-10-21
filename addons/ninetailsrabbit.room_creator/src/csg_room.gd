@@ -45,7 +45,7 @@ func _enter_tree() -> void:
 
 
 func build() -> void:
-	PluginUtilities.set_owner_to_edited_scene_root(self)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(self)
 	
 	if is_bridge_room_connector:
 		name = "BridgeConnector%s" % name
@@ -90,7 +90,7 @@ func build() -> void:
 
 func create_materials_on_room() -> void:
 	if generate_materials:
-		var shapes =  PluginUtilities.get_all_children(self).filter(func(child): return child is CSGShape3D)
+		var shapes =  RoomCreatorPluginUtilities.get_all_children(self).filter(func(child): return child is CSGShape3D)
 		var index: int = 0
 		
 		for shape: CSGShape3D in shapes:
@@ -119,7 +119,7 @@ func generate_mesh_instance():
 func walls() -> Array[CSGShape3D]:
 	var result: Array[CSGShape3D] = []
 
-	for wall: CSGShape3D in PluginUtilities.remove_falsy_values([front_wall, back_wall, right_wall, left_wall]):
+	for wall: CSGShape3D in RoomCreatorPluginUtilities.remove_falsy_values([front_wall, back_wall, right_wall, left_wall]):
 		result.append(wall)
 	
 	return result
@@ -136,7 +136,7 @@ func available_sockets() -> Array[Marker3D]:
 
 
 func door_sockets() ->  Array[Marker3D]:
-	var markers = PluginUtilities.find_nodes_of_type(self, Marker3D.new())
+	var markers = RoomCreatorPluginUtilities.find_nodes_of_type(self, Marker3D.new())
 	var sockets: Array[Marker3D] = []
 	
 	for socket: Marker3D in markers:
@@ -172,10 +172,10 @@ func create_door_slot_in_wall(wall: CSGShape3D, socket_number: int = 1, size: Ve
 		
 		if randomize_door_position_in_wall:
 			if door_rotation.y != 0 and (wall.size.z - _door_size.x) > _door_size.x:
-				door_position.z = (-1 if PluginUtilities.chance(0.5) else 1) * randf_range(_door_size.x, (wall.size.z - _door_size.x) / 2)
+				door_position.z = (-1 if RoomCreatorPluginUtilities.chance(0.5) else 1) * randf_range(_door_size.x, (wall.size.z - _door_size.x) / 2)
 			
 			if door_rotation.y == 0 and (wall.size.x - _door_size.x) > _door_size.x:
-				door_position.x = (-1 if PluginUtilities.chance(0.5) else 1) * randf_range(_door_size.x, (wall.size.x - _door_size.x) / 2)
+				door_position.x = (-1 if RoomCreatorPluginUtilities.chance(0.5) else 1) * randf_range(_door_size.x, (wall.size.x - _door_size.x) / 2)
 				
 		var door_slot: CSGBox3D = CSGBox3D.new()
 		door_slot.name = "%sDoorSlot" % wall.name
@@ -186,7 +186,7 @@ func create_door_slot_in_wall(wall: CSGShape3D, socket_number: int = 1, size: Ve
 		
 		wall.add_child(door_slot)
 		
-		PluginUtilities.set_owner_to_edited_scene_root(door_slot)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(door_slot)
 		
 		var room_socket: Marker3D = Marker3D.new()
 		room_socket.name = "RoomSocket %d" % socket_number
@@ -206,7 +206,7 @@ func create_door_slot_in_wall(wall: CSGShape3D, socket_number: int = 1, size: Ve
 		room_socket.set_meta("wall", wall.name)
 				
 		wall.add_child(room_socket)
-		PluginUtilities.set_owner_to_edited_scene_root(room_socket)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_socket)
 	
 
 func create_ceil_columns(size: Vector3 = room_size) -> void:
@@ -220,9 +220,9 @@ func create_ceil_columns(size: Vector3 = room_size) -> void:
 	ceil_column_substraction.size = Vector3(size.x - ceil_column_thickness * 2, ceil_column_base.size.y + ceil_column_thickness * 2, size.z - ceil_column_thickness * 2)
 	
 	add_child(ceil_column_base)
-	PluginUtilities.set_owner_to_edited_scene_root(ceil_column_base)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(ceil_column_base)
 	ceil_column_base.add_child(ceil_column_substraction)
-	PluginUtilities.set_owner_to_edited_scene_root(ceil_column_substraction)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(ceil_column_substraction)
 	
 	ceil_column_substraction.position = Vector3.ZERO
 	ceil_column_base.position.y -= min(ceil_column_height, ceil_column_thickness) - ceil_thickness * 2
@@ -241,25 +241,25 @@ func create_corner_columns(size: Vector3 = room_size) -> void:
 	top_right_column.size = column_size
 	
 	add_child(top_right_column)
-	PluginUtilities.set_owner_to_edited_scene_root(top_right_column)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(top_right_column)
 	top_right_column.position = Vector3( (size.x / 2.0) - adjustment_thickness, size.y / 2.0, -((size.z / 2.0) - adjustment_thickness))
 
 	top_left_column.name = "TopLeftCornerColumn"
 	top_left_column.size = column_size
 	top_left_column.position = Vector3(-((size.x / 2.0) - adjustment_thickness), size.y / 2.0, -((size.z / 2.0) - adjustment_thickness))
 	add_child(top_left_column)
-	PluginUtilities.set_owner_to_edited_scene_root(top_left_column)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(top_left_column)
 
 	bottom_right_column.name = "BottomRightCornerColumn"
 	bottom_right_column.size = column_size
 	add_child(bottom_right_column)
-	PluginUtilities.set_owner_to_edited_scene_root(bottom_right_column)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(bottom_right_column)
 	bottom_right_column.position = Vector3( (size.x / 2.0) - adjustment_thickness, size.y / 2.0, ((size.z / 2.0) - adjustment_thickness))
 
 	bottom_left_column.name = "BottomLeftCornerColumn"
 	bottom_left_column.size = column_size
 	add_child(bottom_left_column)
-	PluginUtilities.set_owner_to_edited_scene_root(bottom_left_column)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(bottom_left_column)
 	bottom_left_column.position = Vector3(-((size.x / 2.0) - adjustment_thickness), size.y / 2.0, ((size.z / 2.0) - adjustment_thickness))
 	
 	
@@ -277,7 +277,7 @@ func create_floor(size: Vector3 = room_size) -> void:
 	floor_side.position = Vector3.ZERO
 	
 	add_child(floor_side)
-	PluginUtilities.set_owner_to_edited_scene_root(floor_side)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(floor_side)
 
 
 func create_ceil(size: Vector3 = room_size) -> void:
@@ -295,7 +295,7 @@ func create_ceil(size: Vector3 = room_size) -> void:
 	ceil_side.name = "Ceil"
 	
 	add_child(ceil_side)
-	PluginUtilities.set_owner_to_edited_scene_root(ceil_side)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(ceil_side)
 
 
 func create_front_wall(size: Vector3 = room_size) -> void:
@@ -314,7 +314,7 @@ func create_front_wall(size: Vector3 = room_size) -> void:
 	front_wall.name = "FrontWall"
 	
 	add_child(front_wall)
-	PluginUtilities.set_owner_to_edited_scene_root(front_wall)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(front_wall)
 
 
 func create_back_wall(size: Vector3 = room_size) -> void:
@@ -333,7 +333,7 @@ func create_back_wall(size: Vector3 = room_size) -> void:
 	back_wall.name = "BackWall"
 	
 	add_child(back_wall)
-	PluginUtilities.set_owner_to_edited_scene_root(back_wall)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(back_wall)
 
 
 func create_right_wall(size: Vector3 = room_size) -> void:
@@ -352,7 +352,7 @@ func create_right_wall(size: Vector3 = room_size) -> void:
 	right_wall.name = "RightWall"
 		
 	add_child(right_wall)
-	PluginUtilities.set_owner_to_edited_scene_root(right_wall)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(right_wall)
 
 
 func create_left_wall(size: Vector3 = room_size) -> void:
@@ -371,6 +371,6 @@ func create_left_wall(size: Vector3 = room_size) -> void:
 	left_wall.name = "LeftWall"
 	
 	add_child(left_wall)
-	PluginUtilities.set_owner_to_edited_scene_root(left_wall)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(left_wall)
 
 #endregion

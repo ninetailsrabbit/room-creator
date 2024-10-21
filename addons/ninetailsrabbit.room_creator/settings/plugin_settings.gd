@@ -4,7 +4,7 @@ class_name MyPluginSettings extends RefCounted
 const PluginPrefixName: String = "ninetailsrabbit.room_creator" ## The folder name
 const GitRepositoryName: String = "room-creator"
 
-static var PluginName: String = "MyPlugin"
+static var PluginName: String = "RoomCreator"
 static var PluginProjectName: String = ProjectSettings.get_setting("application/config/name")
 static var PluginBasePath: String = "res://addons/%s" % PluginPrefixName
 static var PluginLocalConfigFilePath = "%s/plugin.cfg" % PluginBasePath

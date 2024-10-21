@@ -99,7 +99,7 @@ func save_generated_meshes() -> void:
 	for room: RoomMesh in rooms_created:
 		var target_room: MeshInstance3D = room.duplicate()
 		
-		for child: Node in PluginUtilities.get_all_children(target_room):
+		for child: Node in RoomCreatorPluginUtilities.get_all_children(target_room):
 			child.owner = target_room
 			
 		var scene: PackedScene = PackedScene.new()
@@ -240,12 +240,12 @@ func generate_collision_on_room_mesh(room_mesh_instance: RoomMesh) -> void:
 					var body = StaticBody3D.new()
 					body.name = "%sStaticBody3D" % room_mesh_instance.name
 					room_mesh_instance.add_child(body)
-					PluginUtilities.set_owner_to_edited_scene_root(body)
+					RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(body)
 					body.add_child(convex_collision)
 				else:
 					room_mesh_instance.add_child(convex_collision)
 					
-				PluginUtilities.set_owner_to_edited_scene_root(convex_collision)
+				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(convex_collision)
 				
 			AvailableCollisions.Trimesh:
 				var trimesh_collision = CollisionShape3D.new()
@@ -256,12 +256,12 @@ func generate_collision_on_room_mesh(room_mesh_instance: RoomMesh) -> void:
 					var body = StaticBody3D.new()
 					body.name = "%sStaticBody3D" % room_mesh_instance.name
 					room_mesh_instance.add_child(body)
-					PluginUtilities.set_owner_to_edited_scene_root(body)
+					RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(body)
 					body.add_child(trimesh_collision)
 				else:
 					room_mesh_instance.add_child(trimesh_collision)
 			
-				PluginUtilities.set_owner_to_edited_scene_root(trimesh_collision)
+				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(trimesh_collision)
 	
 
 func generate_room_meshes() -> void:
@@ -276,7 +276,7 @@ func generate_room_meshes() -> void:
 				room_meshes_output_node = Node3D.new()
 				room_meshes_output_node.name = "RoomMeshesOutputNode"
 				add_child(room_meshes_output_node)
-				PluginUtilities.set_owner_to_edited_scene_root(room_meshes_output_node)
+				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_meshes_output_node)
 				
 			var room_created_names: Array = rooms_created.map(func(room: RoomMesh): return room.name)
 			var new_rooms = csg_rooms_created.filter(func(csg_room): return not csg_room.name in room_created_names)
@@ -287,7 +287,7 @@ func generate_room_meshes() -> void:
 				if room_mesh_instance:
 					room_meshes_output_node.add_child(room_mesh_instance)
 					
-					PluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
+					RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
 					
 					add_door_sockets_to_generated_room_mesh(room_mesh_instance)
 					name_surfaces_on_room_mesh(room, room_mesh_instance)
@@ -307,7 +307,7 @@ func generate_room_meshes() -> void:
 			room_meshes_output_node = Node3D.new()
 			room_meshes_output_node.name = "RoomMeshesOutputNode"
 			add_child(room_meshes_output_node)
-			PluginUtilities.set_owner_to_edited_scene_root(room_meshes_output_node)
+			RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_meshes_output_node)
 			
 			var meshes = csg_combiner_root.get_meshes()
 			
@@ -316,12 +316,12 @@ func generate_room_meshes() -> void:
 				room_mesh_instance.name = "GeneratedRoomMesh"
 				room_mesh_instance.mesh = meshes[1] as ArrayMesh
 				
-				for socket: Marker3D in PluginUtilities.find_nodes_of_type(csg_combiner_root, Marker3D.new()):
+				for socket: Marker3D in RoomCreatorPluginUtilities.find_nodes_of_type(csg_combiner_root, Marker3D.new()):
 					room_mesh_instance.sockets.append(socket)
 
 				room_meshes_output_node.add_child(room_mesh_instance)
 				
-				PluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
+				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
 				
 				add_door_sockets_to_generated_room_mesh(room_mesh_instance)
 				name_surfaces_on_combined_mesh(csg_combiner_root, room_mesh_instance)
@@ -338,7 +338,7 @@ func add_door_sockets_to_generated_room_mesh(room_mesh_instance: RoomMesh) -> vo
 		door_socket.set_meta("wall", socket.get_meta("wall"))
 		
 		room_mesh_instance.add_child(door_socket)
-		PluginUtilities.set_owner_to_edited_scene_root(door_socket)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(door_socket)
 		
 		door_socket.global_position = socket.global_position
 		door_socket.global_rotation = socket.global_rotation
@@ -392,7 +392,7 @@ func _prepare_csg_rooms_output_node() -> Node3D:
 		csg_rooms_output_node = Node3D.new()
 		csg_rooms_output_node.name = "CSGRoomsOutputNode"
 		add_child(csg_rooms_output_node)
-		PluginUtilities.set_owner_to_edited_scene_root(csg_rooms_output_node)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(csg_rooms_output_node)
 		
 	return csg_rooms_output_node
 	
@@ -407,7 +407,7 @@ func _prepare_csg_combiner_root() -> CSGCombiner3D:
 		
 	if not csg_combiner_root.is_inside_tree():
 		csg_rooms_output_node.add_child(csg_combiner_root)
-		PluginUtilities.set_owner_to_edited_scene_root(csg_combiner_root)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(csg_combiner_root)
 	
 	return csg_combiner_root
 
