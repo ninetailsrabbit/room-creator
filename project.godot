@@ -12,9 +12,13 @@ config_version=5
 
 config/name="Room creator"
 config/description="Create basic rooms for your 3D by controlling some parameters and speeding up the process of integrating single rooms into your world"
-config/version="1.0.1"
+config/version="1.0.2"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ninetailsrabbit.room_creator/plugin.cfg")
 
 [rendering]
 

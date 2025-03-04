@@ -1,5 +1,5 @@
 @tool
-class_name MyPluginSettings extends RefCounted
+class_name RoomCreatorPluginSettings extends RefCounted
 
 const PluginPrefixName: String = "ninetailsrabbit.room_creator" ## The folder name
 const GitRepositoryName: String = "room-creator"
