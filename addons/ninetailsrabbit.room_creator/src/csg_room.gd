@@ -10,6 +10,11 @@ class_name CSGRoom extends CSGCombiner3D
 @export var door_size: Vector3 = Vector3(1.5, 2.0, 0.25)
 @export_range(1, 4, 1) var number_of_doors = 1
 @export var randomize_door_position_in_wall: bool = false
+@export var use_manual_door_mode: bool = false
+@export var door_in_left_wall: bool = false
+@export var door_in_right_wall: bool = false
+@export var door_in_front_wall: bool = false
+@export var door_in_back_wall: bool = false
 @export_group("Thickness")
 @export var wall_thickness: float = 0.15
 @export var ceil_thickness: float = 0.1
@@ -82,9 +87,29 @@ func build() -> void:
 			create_door_slot_in_wall(right_wall, 1)
 			create_door_slot_in_wall(left_wall, 2)
 	else:
-		for socket_number in number_of_doors:
-			create_door_slot_in_random_wall(socket_number)
 		
+		if use_manual_door_mode:
+			var socket_number: int = 1
+			
+			if door_in_back_wall:
+				create_door_slot_in_wall(back_wall, socket_number)
+				socket_number += 1
+				
+			if door_in_front_wall:
+				create_door_slot_in_wall(front_wall, socket_number)
+				socket_number += 1
+				
+			if door_in_left_wall:
+				create_door_slot_in_wall(left_wall, socket_number)
+				socket_number += 1
+				
+			if door_in_right_wall:
+				create_door_slot_in_wall(right_wall, socket_number)
+				
+		else:
+			for socket_number in number_of_doors:
+				create_door_slot_in_random_wall(socket_number)
+			
 	create_materials_on_room()
 		
 
@@ -115,7 +140,7 @@ func generate_mesh_instance():
 	
 	return null
 
-#region Getters
+#region Getters	
 func walls() -> Array[CSGShape3D]:
 	var result: Array[CSGShape3D] = []
 

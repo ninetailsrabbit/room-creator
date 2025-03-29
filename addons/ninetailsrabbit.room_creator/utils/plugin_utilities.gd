@@ -49,3 +49,15 @@ static func chance(probability_chance: float = 0.5) -> bool:
 	probability_chance = clamp(probability_chance, 0.0, 1.0)
 	
 	return randf() < probability_chance
+
+
+static func flatten(array: Array[Variant]):
+	var result := []
+	
+	for i in array.size():
+		if typeof(array[i]) >= TYPE_ARRAY:
+			result.append_array(flatten(array[i]))
+		else:
+			result.append(array[i])
+
+	return result
