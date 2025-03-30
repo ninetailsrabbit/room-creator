@@ -87,7 +87,6 @@ func build() -> void:
 			create_door_slot_in_wall(right_wall, 1)
 			create_door_slot_in_wall(left_wall, 2)
 	else:
-		
 		if not use_manual_door_mode:
 			for socket_number in number_of_doors:
 				create_door_slot_in_random_wall(socket_number)

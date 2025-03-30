@@ -7,7 +7,7 @@ class DungeonRoom:
 	var column: int
 	var row: int
 	var dimensions: Vector2i ## The dimensions of the grid it belows
-	var critical_path: bool = false
+	var critical_path: int = -1
 	
 	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i, _is_entrance: bool = false) -> void:
 		room = _room
@@ -15,7 +15,6 @@ class DungeonRoom:
 		row = _row
 		dimensions = _dimensions
 		is_entrance = _is_entrance
-	
 	
 	func grid_position() -> Vector2i:
 		return Vector2i(column, row)
@@ -36,6 +35,9 @@ class DungeonRoom:
 	func is_left_border() -> bool:
 		return column == 0
 		
+	func is_corner() -> bool:
+		return is_top_left_corner() or is_top_right_corner() or is_bottom_left_corner() or is_bottom_right_corner()
+		
 	func is_top_left_corner() -> bool:
 		return row == 0 and column == 0
 
@@ -44,7 +46,6 @@ class DungeonRoom:
 
 	func is_top_right_corner() -> bool:
 		return row == 0 and column == dimensions.x - 1
-
 
 	func is_bottom_right_corner() -> bool:
 		return row == dimensions.y - 1 and column == dimensions.x - 1
@@ -107,7 +108,7 @@ func generate_dungeon() -> void:
 	generate_critical_path(entrance, critical_path_length)
 		
 	for room: DungeonRoom in RoomCreatorPluginUtilities.flatten(dungeon_grid)\
-		.filter(func(room: DungeonRoom): return room.critical_path or room.is_entrance):
+		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.is_entrance):
 			
 		add_room(room)
 			
@@ -115,6 +116,9 @@ func generate_dungeon() -> void:
 func add_room(dungeon_room: DungeonRoom) -> void:
 	_setup_room_doors(dungeon_room)
 	add_child(dungeon_room.room)
+	print("room position ", dungeon_room.room.name, dungeon_room.grid_position())
+	
+	dungeon_room.room.create_manual_doors()
 	dungeon_room.room.position = Vector3(dungeon_room.row * room_size.x, 0, -dungeon_room.column * room_size.z)
 	dungeon_room.room.position.z -= (dungeon_room.room.wall_thickness) * dungeon_room.column
 	dungeon_room.room.position.x += (dungeon_room.room.wall_thickness) * dungeon_room.row
@@ -146,15 +150,15 @@ func generate_critical_path(from: Vector2i, length: int) -> bool:
 		if target_position.x >= 0 and target_position.x < dimensions.x \
 			and target_position.y >= 0 and target_position.y < dimensions.y \
 			and target_position.x < dungeon_grid.size() and target_position.y < dungeon_grid[target_position.x].size() \
-			and not dungeon_grid[target_position.x][target_position.y].critical_path:
+			and dungeon_grid[target_position.x][target_position.y].critical_path == -1:
 				
 				current = target_position
-				dungeon_grid[target_position.x][target_position.y].critical_path = true
+				dungeon_grid[target_position.x][target_position.y].critical_path = critical_path_length - length
 				
 				if generate_critical_path(current, length - 1):
 					return true
 				else:
-					dungeon_grid[target_position.x][target_position.y].critical_path = false
+					dungeon_grid[target_position.x][target_position.y].critical_path = -1
 					current -= direction
 		
 		direction = Vector2i(direction.y, -direction.x)
@@ -194,12 +198,23 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	var column: int = dungeon_room.column
 	var row: int = dungeon_room.row
 	
-	dungeon_room.room.door_in_left_wall = not dungeon_room.is_top_border() or (row - 1 >= dungeon_grid[column].size() and dungeon_grid[column][row - 1].critical_path) 
-	dungeon_room.room.door_in_right_wall = not dungeon_room.is_bottom_border() or (row + 1 < dungeon_grid[column].size() and dungeon_grid[column][row + 1].critical_path)
-	dungeon_room.room.door_in_back_wall = not dungeon_room.is_left_border() or (column - 1 >= dungeon_grid.size() and dungeon_grid[column][row].critical_path)
-	dungeon_room.room.door_in_front_wall = not dungeon_room.is_right_border() or (column + 1 < dungeon_grid.size() and dungeon_grid[column][row].critical_path)
-	dungeon_room.room.create_manual_doors()
+	#var is_border: bool = dungeon_room.is_border()
 	
+	#if is_border:
+		#dungeon_room.room.door_in_left_wall = not dungeon_room.is_top_border() 
+		#dungeon_room.room.door_in_right_wall = not dungeon_room.is_bottom_border() 
+		#dungeon_room.room.door_in_back_wall = not dungeon_room.is_left_border()
+		#dungeon_room.room.door_in_front_wall = not dungeon_room.is_right_border()
+	
+	dungeon_room.room.door_in_left_wall = row - 1 >= 0 and (dungeon_grid[column][row - 1].critical_path != -1 or dungeon_grid[column][row - 1].is_entrance) 
+	dungeon_room.room.door_in_right_wall = row + 1 < dimensions.y and (dungeon_grid[column][row + 1].critical_path != -1 or dungeon_grid[column][row + 1].is_entrance)
+	
+	print("Room on position (%d,%d)" % [column, row])
+	print("left door, right door: ", dungeon_room.room.door_in_left_wall, dungeon_room.room.door_in_right_wall)
+	
+	#dungeon_room.room.door_in_back_wall = column - 1 >= dimensions.x and dungeon_grid[column - 1][row].critical_path
+	#dungeon_room.room.door_in_front_wall = column + 1 < dimensions.x and dungeon_grid[column + 1][row].critical_path
+	#
 	#if dungeon_room.is_top_border():
 		##dungeon_room.room.door_in_left_wall = false
 		#dungeon_room.room.door_in_back_wall = false if dungeon_room.is_top_left_corner() else true
