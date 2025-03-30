@@ -2,23 +2,32 @@
 class_name DungeonGenerator extends Node3D
 
 class DungeonRoom:
-	var is_entrance: bool = false
+	var is_entrance: bool = false:
+		set(value):
+			is_entrance = value
+			critical_path = 0 if is_entrance else -1
+	var is_exit: bool = false
 	var room: CSGRoom
 	var column: int
 	var row: int
 	var dimensions: Vector2i ## The dimensions of the grid it belows
 	var critical_path: int = -1
 	
-	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i, _is_entrance: bool = false) -> void:
+	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i) -> void:
 		room = _room
 		column = _column
 		row = _row
 		dimensions = _dimensions
-		is_entrance = _is_entrance
+	
 	
 	func grid_position() -> Vector2i:
 		return Vector2i(column, row)
 		
+	func critical_path_neighbour_of(other_room: DungeonRoom):
+		return critical_path != -1 \
+			and other_room.critical_path != -1 \
+			and other_room.critical_path in [maxi(0, critical_path - 1), critical_path + 1]
+	
 	#region Grid related
 	func is_border() -> bool:
 		return is_top_border() or is_bottom_border() or is_right_border() or is_left_border()
@@ -96,9 +105,10 @@ func generate_dungeon() -> void:
 				room,
 				column,
 				row,
-				dimensions,
-				Vector2i(column, row) == entrance
+				dimensions
 			)
+			
+			dungeon_room.is_entrance = Vector2i(column, row) == entrance
 				
 			room.room_size = room_size
 			room.use_manual_door_mode = true
@@ -106,17 +116,20 @@ func generate_dungeon() -> void:
 			dungeon_grid[column].append(dungeon_room)
 			
 	generate_critical_path(entrance, critical_path_length)
-		
+	create_dungeon_rooms()
+	
+
+func create_dungeon_rooms() -> void:
 	for room: DungeonRoom in RoomCreatorPluginUtilities.flatten(dungeon_grid)\
 		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.is_entrance):
 			
-		add_room(room)
-			
+		room.is_exit = room.critical_path == critical_path_length - 1
+		add_room_to_tree(room)
 
-func add_room(dungeon_room: DungeonRoom) -> void:
+
+func add_room_to_tree(dungeon_room: DungeonRoom) -> void:
 	_setup_room_doors(dungeon_room)
 	add_child(dungeon_room.room)
-	print("room position ", dungeon_room.room.name, dungeon_room.grid_position())
 	
 	dungeon_room.room.create_manual_doors()
 	dungeon_room.room.position = Vector3(dungeon_room.row * room_size.x, 0, -dungeon_room.column * room_size.z)
@@ -198,45 +211,17 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	var column: int = dungeon_room.column
 	var row: int = dungeon_room.row
 	
-	#var is_border: bool = dungeon_room.is_border()
+	var right_room: DungeonRoom = dungeon_grid[column + 1][row] if column + 1 < dimensions.x else null
+	var left_room: DungeonRoom =  dungeon_grid[column - 1][row] if column - 1 >= 0 else null
+	var top_room: DungeonRoom = dungeon_grid[column][row - 1] if row - 1 >= 0 else null
+	var bottom_room: DungeonRoom = dungeon_grid[column][row + 1] if row + 1 < dimensions.y else null
 	
-	#if is_border:
-		#dungeon_room.room.door_in_left_wall = not dungeon_room.is_top_border() 
-		#dungeon_room.room.door_in_right_wall = not dungeon_room.is_bottom_border() 
-		#dungeon_room.room.door_in_back_wall = not dungeon_room.is_left_border()
-		#dungeon_room.room.door_in_front_wall = not dungeon_room.is_right_border()
+	dungeon_room.room.door_in_front_wall = right_room and dungeon_room.critical_path_neighbour_of(right_room)
+	dungeon_room.room.door_in_back_wall = left_room and dungeon_room.critical_path_neighbour_of(left_room)
+	dungeon_room.room.door_in_left_wall = top_room and dungeon_room.critical_path_neighbour_of(top_room)
+	dungeon_room.room.door_in_right_wall = bottom_room and dungeon_room.critical_path_neighbour_of(bottom_room)
 	
-	dungeon_room.room.door_in_left_wall = row - 1 >= 0 and (dungeon_grid[column][row - 1].critical_path != -1 or dungeon_grid[column][row - 1].is_entrance) 
-	dungeon_room.room.door_in_right_wall = row + 1 < dimensions.y and (dungeon_grid[column][row + 1].critical_path != -1 or dungeon_grid[column][row + 1].is_entrance)
+	print("room neighbours ", right_room, left_room, top_room, bottom_room)
+	print("room doors ", dungeon_room.grid_position(), dungeon_room.room.door_in_front_wall, dungeon_room.room.door_in_back_wall , dungeon_room.room.door_in_left_wall , dungeon_room.room.door_in_right_wall )
 	
-	print("Room on position (%d,%d)" % [column, row])
-	print("left door, right door: ", dungeon_room.room.door_in_left_wall, dungeon_room.room.door_in_right_wall)
 	
-	#dungeon_room.room.door_in_back_wall = column - 1 >= dimensions.x and dungeon_grid[column - 1][row].critical_path
-	#dungeon_room.room.door_in_front_wall = column + 1 < dimensions.x and dungeon_grid[column + 1][row].critical_path
-	#
-	#if dungeon_room.is_top_border():
-		##dungeon_room.room.door_in_left_wall = false
-		#dungeon_room.room.door_in_back_wall = false if dungeon_room.is_top_left_corner() else true
-		#dungeon_room.room.door_in_front_wall = false if dungeon_room.is_top_right_corner() else true
-		##dungeon_room.room.door_in_right_wall = true
-	#elif dungeon_room.is_bottom_border():
-		##dungeon_room.room.door_in_left_wall = true
-		#dungeon_room.room.door_in_back_wall = false if dungeon_room.is_bottom_left_corner() else true
-		#dungeon_room.room.door_in_front_wall = false if dungeon_room.is_bottom_right_corner() else true
-		##dungeon_room.room.door_in_right_wall = false
-	#elif dungeon_room.is_right_border():
-		##dungeon_room.room.door_in_left_wall = false if dungeon_room.is_top_right_corner() else true
-		#dungeon_room.room.door_in_back_wall = true
-		#dungeon_room.room.door_in_front_wall = false
-		##dungeon_room.room.door_in_right_wall = false if dungeon_room.is_bottom_right_corner() else true
-	#elif dungeon_room.is_left_border():
-		##dungeon_room.room.door_in_left_wall = true
-		#dungeon_room.room.door_in_back_wall = false
-		#dungeon_room.room.door_in_front_wall = true
-		##dungeon_room.room.door_in_right_wall = false if dungeon_room.is_bottom_right_corner() else true
-	#else:
-		##dungeon_room.room.door_in_left_wall = true
-		#dungeon_room.room.door_in_back_wall = true
-		#dungeon_room.room.door_in_front_wall = true
-		##dungeon_room.room.door_in_right_wall = true
