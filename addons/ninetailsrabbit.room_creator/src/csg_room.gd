@@ -88,30 +88,31 @@ func build() -> void:
 			create_door_slot_in_wall(left_wall, 2)
 	else:
 		
-		if use_manual_door_mode:
-			var socket_number: int = 1
-			
-			if door_in_back_wall:
-				create_door_slot_in_wall(back_wall, socket_number)
-				socket_number += 1
-				
-			if door_in_front_wall:
-				create_door_slot_in_wall(front_wall, socket_number)
-				socket_number += 1
-				
-			if door_in_left_wall:
-				create_door_slot_in_wall(left_wall, socket_number)
-				socket_number += 1
-				
-			if door_in_right_wall:
-				create_door_slot_in_wall(right_wall, socket_number)
-				
-		else:
+		if not use_manual_door_mode:
 			for socket_number in number_of_doors:
 				create_door_slot_in_random_wall(socket_number)
 			
 	create_materials_on_room()
 		
+
+func create_manual_doors() -> void:
+	var socket_number: int = 1
+			
+	if door_in_back_wall:
+		create_door_slot_in_wall(back_wall, socket_number)
+		socket_number += 1
+		
+	if door_in_front_wall:
+		create_door_slot_in_wall(front_wall, socket_number)
+		socket_number += 1
+		
+	if door_in_left_wall:
+		create_door_slot_in_wall(left_wall, socket_number)
+		socket_number += 1
+		
+	if door_in_right_wall:
+		create_door_slot_in_wall(right_wall, socket_number)
+
 
 func create_materials_on_room() -> void:
 	if generate_materials:
