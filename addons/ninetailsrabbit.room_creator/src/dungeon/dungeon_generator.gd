@@ -1,82 +1,13 @@
 @tool
 class_name DungeonGenerator extends Node3D
 
-class DungeonRoom:
-	var is_entrance: bool = false:
-		set(value):
-			is_entrance = value
-			critical_path = 0 if is_entrance else -1
-	var is_exit: bool = false
-	var room: CSGRoom
-	var column: int
-	var row: int
-	var dimensions: Vector2i ## The dimensions of the grid it belows
-	var critical_path: int = -1
-	var branch: int = -1
-	
-	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i) -> void:
-		room = _room
-		column = _column
-		row = _row
-		dimensions = _dimensions
-	
-	
-	func grid_position() -> Vector2i:
-		return Vector2i(column, row)
-	
-	
-	func critical_path_neighbour_of(other_room: DungeonRoom):
-		return other_room \
-			and critical_path != -1 \
-			and other_room.critical_path != -1 \
-			and other_room.critical_path in [maxi(0, critical_path - 1), critical_path + 1]
-	
-	
-	func branch_path_neighbour_of(other_room: DungeonRoom):
-		return other_room \
-			and branch != -1 \
-			and other_room.branch != -1 \
-			and other_room.branch in [maxi(0, branch - 1), branch + 1]
-	
-	#region Grid related
-	func is_border() -> bool:
-		return is_top_border() or is_bottom_border() or is_right_border() or is_left_border()
-		
-	func is_top_border() -> bool:
-		return row == 0
-
-	func is_bottom_border() -> bool:
-		return row == dimensions.y - 1
-
-	func is_right_border() -> bool:
-		return column == dimensions.x - 1
-
-	func is_left_border() -> bool:
-		return column == 0
-		
-	func is_corner() -> bool:
-		return is_top_left_corner() or is_top_right_corner() or is_bottom_left_corner() or is_bottom_right_corner()
-		
-	func is_top_left_corner() -> bool:
-		return row == 0 and column == 0
-
-	func is_bottom_left_corner() -> bool:
-		return column == 0 and row == dimensions.y - 1
-
-	func is_top_right_corner() -> bool:
-		return row == 0 and column == dimensions.x - 1
-
-	func is_bottom_right_corner() -> bool:
-		return row == dimensions.y - 1 and column == dimensions.x - 1
-
-#endregion
-
-
 @export_tool_button("Generate dungeon") var generate_dungeon_action = generate_dungeon
 @export_tool_button("Clear dungeon") var clear_dungeon_action = _clear_dungeon_rooms
 ## Dimensions in the format Vector2i(column, row)
 @export var dimensions: Vector2i = Vector2i(10, 5)
+## Dungeon room size
 @export var room_size: Vector3 = Vector3(5, 4, 5)
+## Only the rooms that are on the critical path are created in the scene tree
 @export var critical_path_length: int = 5
 @export var branches: int = 2
 ## This branch length is a vector as a way to hold a range of x:min & y:max value
@@ -147,23 +78,6 @@ func create_dungeon_rooms() -> void:
 		add_room_to_tree(room)
 
 
-func add_room_to_tree(dungeon_room: DungeonRoom) -> void:
-	_setup_room_doors(dungeon_room)
-	add_child(dungeon_room.room)
-	
-	dungeon_room.room.create_manual_doors()
-	dungeon_room.room.position = Vector3(dungeon_room.row * room_size.x, 0, -dungeon_room.column * room_size.z)
-	dungeon_room.room.position.z -= (dungeon_room.room.wall_thickness) * dungeon_room.column
-	dungeon_room.room.position.x += (dungeon_room.room.wall_thickness) * dungeon_room.row
-
-
-## A helper function to tterate over the dungeon grid and execute a callback callback that receives a DungeonRoom
-func iterate_over_grid(grid: Array, callback: Callable) -> void:
-	for column in dimensions.x:
-		for row in dimensions.y:
-			callback.call(column, row)
-
-
 func generate_branches() -> void:
 	var branches_created: int = 0
 	
@@ -194,8 +108,6 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 	if target_position.x < 0 or target_position.y < 0:
 		direction = direction.abs()
 		target_position = Vector2i(current.x + direction.x, current.y + direction.y)
-		
-	
 	
 	for i in directions_v2.size():
 		if target_position.x >= 0 and target_position.x < dimensions.x \
@@ -230,6 +142,23 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 	return false
 
 
+func add_room_to_tree(dungeon_room: DungeonRoom) -> void:
+	_setup_room_doors(dungeon_room)
+	add_child(dungeon_room.room)
+	
+	dungeon_room.room.create_manual_doors()
+	dungeon_room.room.position = Vector3(dungeon_room.row * room_size.x, 0, -dungeon_room.column * room_size.z)
+	dungeon_room.room.position.z -= (dungeon_room.room.wall_thickness) * dungeon_room.column
+	dungeon_room.room.position.x += (dungeon_room.room.wall_thickness) * dungeon_room.row
+
+
+## A helper function to tterate over the dungeon grid and execute a callback callback that receives a DungeonRoom
+func iterate_over_grid(grid: Array, callback: Callable) -> void:
+	for column in dimensions.x:
+		for row in dimensions.y:
+			callback.call(column, row)
+
+
 func border_rooms() -> Array[DungeonRoom]:
 	var rooms: Array[DungeonRoom] = []
 	rooms.assign(RoomCreatorPluginUtilities\
@@ -238,10 +167,27 @@ func border_rooms() -> Array[DungeonRoom]:
 	)
 	
 	return rooms
-	
-	
+
+
 func pick_random_border_room() -> Vector2i:
 	var dungeon_borders: Array[Vector2i] = border_rooms()\
+		.map(func(dungeon_room: DungeonRoom): return dungeon_room.grid_position())
+
+	return dungeon_borders.pick_random()
+	
+	
+func branch_rooms() -> Array[DungeonRoom]:
+	var rooms: Array[DungeonRoom] = []
+	rooms.assign(RoomCreatorPluginUtilities\
+		.flatten(dungeon_grid)\
+		.filter(func(dungeon_room: DungeonRoom): return dungeon_room.branch != -1)
+	)
+	
+	return rooms
+	
+
+func pick_random_branch_room() -> Vector2i:
+	var dungeon_borders: Array[Vector2i] = branch_rooms()\
 		.map(func(dungeon_room: DungeonRoom): return dungeon_room.grid_position())
 
 	return dungeon_borders.pick_random()
@@ -280,3 +226,73 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 		and dungeon_room.critical_path_neighbour_of(top_room) or dungeon_room.branch_path_neighbour_of(top_room)
 	dungeon_room.room.door_in_right_wall = bottom_room \
 		and dungeon_room.critical_path_neighbour_of(bottom_room) or dungeon_room.branch_path_neighbour_of(bottom_room)
+
+
+class DungeonRoom:
+	var is_entrance: bool = false:
+		set(value):
+			is_entrance = value
+			critical_path = 0 if is_entrance else -1
+	var is_exit: bool = false
+	var room: CSGRoom
+	var column: int
+	var row: int
+	var dimensions: Vector2i ## The dimensions of the grid it belows
+	var critical_path: int = -1
+	var branch: int = -1
+	
+	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i) -> void:
+		room = _room
+		column = _column
+		row = _row
+		dimensions = _dimensions
+	
+	
+	func grid_position() -> Vector2i:
+		return Vector2i(column, row)
+	
+	
+	func critical_path_neighbour_of(other_room: DungeonRoom):
+		return other_room \
+			and critical_path != -1 \
+			and other_room.critical_path != -1 \
+			and other_room.critical_path in [maxi(0, critical_path - 1), critical_path + 1]
+	
+	
+	func branch_path_neighbour_of(other_room: DungeonRoom):
+		return other_room \
+			and branch != -1 \
+			and other_room.branch != -1 \
+			and other_room.branch in [maxi(0, branch - 1), branch + 1]
+	
+	#region Grid related
+	func is_border() -> bool:
+		return is_top_border() or is_bottom_border() or is_right_border() or is_left_border()
+		
+	func is_top_border() -> bool:
+		return row == 0
+
+	func is_bottom_border() -> bool:
+		return row == dimensions.y - 1
+
+	func is_right_border() -> bool:
+		return column == dimensions.x - 1
+
+	func is_left_border() -> bool:
+		return column == 0
+		
+	func is_corner() -> bool:
+		return is_top_left_corner() or is_top_right_corner() or is_bottom_left_corner() or is_bottom_right_corner()
+		
+	func is_top_left_corner() -> bool:
+		return row == 0 and column == 0
+
+	func is_bottom_left_corner() -> bool:
+		return column == 0 and row == dimensions.y - 1
+
+	func is_top_right_corner() -> bool:
+		return row == 0 and column == dimensions.x - 1
+
+	func is_bottom_right_corner() -> bool:
+		return row == dimensions.y - 1 and column == dimensions.x - 1
+	#endregion
