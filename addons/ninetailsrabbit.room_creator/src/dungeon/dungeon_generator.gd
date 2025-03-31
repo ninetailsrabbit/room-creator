@@ -12,6 +12,7 @@ class DungeonRoom:
 	var row: int
 	var dimensions: Vector2i ## The dimensions of the grid it belows
 	var critical_path: int = -1
+	var branch: int = -1
 	
 	func _init(_room: CSGRoom, _column: int, _row: int, _dimensions: Vector2i) -> void:
 		room = _room
@@ -63,29 +64,38 @@ class DungeonRoom:
 
 
 @export_tool_button("Generate dungeon") var generate_dungeon_action = generate_dungeon
-@export_tool_button("Clear dungeon") var clear_dungeon_action = clear_dungeon
+@export_tool_button("Clear dungeon") var clear_dungeon_action = _clear_dungeon_rooms
 ## Dimensions in the format Vector2i(column, row)
 @export var dimensions: Vector2i = Vector2i(10, 5)
 @export var room_size: Vector3 = Vector3(5, 4, 5)
 @export var critical_path_length: int = 5
+@export var branches: int = 2
+## This branch length is a vector as a way to hold a range of x:min & y:max value
+@export var branch_length: Vector2i = Vector2i(1, 3)
 @export var entrance_position: Vector2i = Vector2i(0, 0)
 ## The entrance room will be randomized on one of the borders of the grid
-@export var randomize_entrance: bool = false
+@export var randomize_entrance: bool = false:
+	set(value):
+		randomize_entrance = value
+		notify_property_list_changed()
 
 
 var directions_v2: Array[Vector2i]= [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN]
+
 var dungeon_grid: Array = []
 var entrance: Vector2i
+var branch_candidates: Array[Vector2i] = []
 
 
-func clear_dungeon() -> void:
-	for child in get_children():
-		child.free()
-		
-		
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "entrance_position":
+		property.usage = PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR if randomize_entrance else PROPERTY_USAGE_EDITOR
+
+
 func generate_dungeon() -> void:
-	clear_dungeon()
+	_clear_dungeon_rooms()
 	dungeon_grid.clear()
+	branch_candidates.clear()
 	
 	assert(entrance_position.x >= 0 \
 		and entrance_position.x < dimensions.x - 1 \
@@ -115,7 +125,8 @@ func generate_dungeon() -> void:
 			
 			dungeon_grid[column].append(dungeon_room)
 			
-	generate_critical_path(entrance, critical_path_length)
+	generate_critical_path(entrance, critical_path_length, critical_path_length)
+	generate_branches()
 	create_dungeon_rooms()
 	
 
@@ -144,7 +155,23 @@ func iterate_over_grid(grid: Array, callback: Callable) -> void:
 			callback.call(column, row)
 
 
-func generate_critical_path(from: Vector2i, length: int) -> bool:
+func generate_branches() -> void:
+	var branches_created: int = 0
+	
+	if branches > 0:
+		var candidate: Vector2i
+		
+		while branches_created < branches and branch_candidates.size():
+			candidate = branch_candidates.pick_random()
+			var current_branch_length: int =  randi_range(branch_length.x, branch_length.y)
+			
+			if generate_critical_path(candidate, current_branch_length, current_branch_length, true):
+				branches_created += 1
+			else:
+				branch_candidates.erase(candidate)
+
+
+func generate_critical_path(from: Vector2i, total_length: int, length: int, is_branch: bool = false) -> bool:
 	if length == 0:
 		return true
 	
@@ -158,20 +185,28 @@ func generate_critical_path(from: Vector2i, length: int) -> bool:
 		direction = direction.abs()
 		target_position = Vector2i(current.x + direction.x, current.y + direction.y)
 	
-
 	for i in directions_v2.size():
 		if target_position.x >= 0 and target_position.x < dimensions.x \
 			and target_position.y >= 0 and target_position.y < dimensions.y \
 			and target_position.x < dungeon_grid.size() and target_position.y < dungeon_grid[target_position.x].size() \
-			and dungeon_grid[target_position.x][target_position.y].critical_path == -1:
+			and dungeon_grid[target_position.x][target_position.y].critical_path == -1 \
+			and dungeon_grid[target_position.x][target_position.y].branch == -1:
 				
 				current = target_position
-				dungeon_grid[target_position.x][target_position.y].critical_path = critical_path_length - length
+				dungeon_grid[current.x][current.y].critical_path = total_length - length
 				
-				if generate_critical_path(current, length - 1):
+				if is_branch:
+					dungeon_grid[current.x][current.y].branch = total_length - length
+			
+				if length > 1:
+					branch_candidates.append(current)
+					
+				if generate_critical_path(current, total_length, length - 1, is_branch):
 					return true
 				else:
-					dungeon_grid[target_position.x][target_position.y].critical_path = -1
+					branch_candidates.erase(current)
+					dungeon_grid[current.x][current.y].critical_path = -1
+					dungeon_grid[current.x][current.y].branch = -1
 					current -= direction
 		
 		direction = Vector2i(direction.y, -direction.x)
@@ -205,7 +240,12 @@ func border_positions(dungeon_dimensions: Vector2i = dimensions) -> Array[Vector
 	iterate_over_grid(dungeon_grid, detect_border)
 	
 	return borders
-	
+
+
+func _clear_dungeon_rooms() -> void:
+	for child in get_children():
+		child.free()
+		
 
 func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	var column: int = dungeon_room.column
@@ -220,8 +260,3 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	dungeon_room.room.door_in_back_wall = left_room and dungeon_room.critical_path_neighbour_of(left_room)
 	dungeon_room.room.door_in_left_wall = top_room and dungeon_room.critical_path_neighbour_of(top_room)
 	dungeon_room.room.door_in_right_wall = bottom_room and dungeon_room.critical_path_neighbour_of(bottom_room)
-	
-	print("room neighbours ", right_room, left_room, top_room, bottom_room)
-	print("room doors ", dungeon_room.grid_position(), dungeon_room.room.door_in_front_wall, dungeon_room.room.door_in_back_wall , dungeon_room.room.door_in_left_wall , dungeon_room.room.door_in_right_wall )
-	
-	
