@@ -23,11 +23,20 @@ class DungeonRoom:
 	
 	func grid_position() -> Vector2i:
 		return Vector2i(column, row)
-		
+	
+	
 	func critical_path_neighbour_of(other_room: DungeonRoom):
-		return critical_path != -1 \
+		return other_room \
+			and critical_path != -1 \
 			and other_room.critical_path != -1 \
 			and other_room.critical_path in [maxi(0, critical_path - 1), critical_path + 1]
+	
+	
+	func branch_path_neighbour_of(other_room: DungeonRoom):
+		return other_room \
+			and branch != -1 \
+			and other_room.branch != -1 \
+			and other_room.branch in [maxi(0, branch - 1), branch + 1]
 	
 	#region Grid related
 	func is_border() -> bool:
@@ -132,7 +141,7 @@ func generate_dungeon() -> void:
 
 func create_dungeon_rooms() -> void:
 	for room: DungeonRoom in RoomCreatorPluginUtilities.flatten(dungeon_grid)\
-		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.is_entrance):
+		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.branch != -1 or room.is_entrance):
 			
 		room.is_exit = room.critical_path == critical_path_length - 1
 		add_room_to_tree(room)
@@ -163,6 +172,7 @@ func generate_branches() -> void:
 		
 		while branches_created < branches and branch_candidates.size():
 			candidate = branch_candidates.pick_random()
+			
 			var current_branch_length: int =  randi_range(branch_length.x, branch_length.y)
 			
 			if generate_critical_path(candidate, current_branch_length, current_branch_length, true):
@@ -184,19 +194,21 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 	if target_position.x < 0 or target_position.y < 0:
 		direction = direction.abs()
 		target_position = Vector2i(current.x + direction.x, current.y + direction.y)
+		
+	
 	
 	for i in directions_v2.size():
 		if target_position.x >= 0 and target_position.x < dimensions.x \
 			and target_position.y >= 0 and target_position.y < dimensions.y \
 			and target_position.x < dungeon_grid.size() and target_position.y < dungeon_grid[target_position.x].size() \
-			and dungeon_grid[target_position.x][target_position.y].critical_path == -1 \
-			and dungeon_grid[target_position.x][target_position.y].branch == -1:
+			and (dungeon_grid[target_position.x][target_position.y].critical_path == -1 or (is_branch and dungeon_grid[target_position.x][target_position.y].branch == -1) ):
 				
 				current = target_position
-				dungeon_grid[current.x][current.y].critical_path = total_length - length
 				
 				if is_branch:
-					dungeon_grid[current.x][current.y].branch = total_length - length
+					dungeon_grid[target_position.x][target_position.y].branch = total_length - length
+				else:
+					dungeon_grid[target_position.x][target_position.y].critical_path = total_length - length
 			
 				if length > 1:
 					branch_candidates.append(current)
@@ -204,9 +216,13 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 				if generate_critical_path(current, total_length, length - 1, is_branch):
 					return true
 				else:
-					branch_candidates.erase(current)
-					dungeon_grid[current.x][current.y].critical_path = -1
-					dungeon_grid[current.x][current.y].branch = -1
+					
+					if is_branch:
+						dungeon_grid[target_position.x][target_position.y].branch = -1
+					else:
+						branch_candidates.erase(target_position)
+						dungeon_grid[target_position.x][target_position.y].critical_path = -1
+						
 					current -= direction
 		
 		direction = Vector2i(direction.y, -direction.x)
@@ -256,7 +272,11 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	var top_room: DungeonRoom = dungeon_grid[column][row - 1] if row - 1 >= 0 else null
 	var bottom_room: DungeonRoom = dungeon_grid[column][row + 1] if row + 1 < dimensions.y else null
 	
-	dungeon_room.room.door_in_front_wall = right_room and dungeon_room.critical_path_neighbour_of(right_room)
-	dungeon_room.room.door_in_back_wall = left_room and dungeon_room.critical_path_neighbour_of(left_room)
-	dungeon_room.room.door_in_left_wall = top_room and dungeon_room.critical_path_neighbour_of(top_room)
-	dungeon_room.room.door_in_right_wall = bottom_room and dungeon_room.critical_path_neighbour_of(bottom_room)
+	dungeon_room.room.door_in_front_wall = right_room \
+		and dungeon_room.critical_path_neighbour_of(right_room) or dungeon_room.branch_path_neighbour_of(right_room)
+	dungeon_room.room.door_in_back_wall = left_room \
+		and dungeon_room.critical_path_neighbour_of(left_room) or dungeon_room.branch_path_neighbour_of(left_room)
+	dungeon_room.room.door_in_left_wall = top_room \
+		and dungeon_room.critical_path_neighbour_of(top_room) or dungeon_room.branch_path_neighbour_of(top_room)
+	dungeon_room.room.door_in_right_wall = bottom_room \
+		and dungeon_room.critical_path_neighbour_of(bottom_room) or dungeon_room.branch_path_neighbour_of(bottom_room)
