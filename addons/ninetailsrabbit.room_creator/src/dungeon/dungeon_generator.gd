@@ -424,7 +424,6 @@ func generate_collisions_on_room_mesh(room_mesh_instance: RoomMesh) -> void:
 	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(trimesh_collision)
 
 
-
 func _save_rooms_as_scenes() -> void:
 	if final_mesh_root_node == null:
 		push_warning("DungeonGenerator ⚠️: No generated meshes found to save as scene files")
@@ -436,7 +435,7 @@ func _save_rooms_as_scenes() -> void:
 			push_error("DungeonGenerator ❌: An error %d ocurred when creating output folder %s " % output_scenes_folder)
 			return
 	
-	var local_folder: String = output_scenes_folder + "/dungeon_meshes_%d" % DirAccess.get_directories_at(output_scenes_folder).size()
+	var local_folder: String = output_scenes_folder + "/dungeon_rooms_%d" % DirAccess.get_directories_at(output_scenes_folder).size()
 	
 	if DirAccess.make_dir_recursive_absolute(local_folder) != OK:
 			push_error("DungeonGenerator ❌: An error %d ocurred when creating output folder %s " % local_folder)
