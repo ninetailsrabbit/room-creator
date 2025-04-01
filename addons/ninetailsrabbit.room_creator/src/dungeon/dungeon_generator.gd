@@ -25,7 +25,10 @@ class_name DungeonGenerator extends Node3D
 	set(value):
 		randomize_entrance = value
 		notify_property_list_changed()
+		
+@export_group("Mesh generation")
 @export var generate_collisions_on_mesh: bool = true
+@export_dir var output_scenes_folder: String
 
 @export_group("Materials")
 @export var entrance_room_materials: Array[RoomMaterials] = []
@@ -56,6 +59,7 @@ func generate_dungeon() -> void:
 	assert(room_configuration != null, "DungeonGenerator: This tool needs a RoomConfiguration resource to generate the dungeon")
 	
 	_clear_dungeon_rooms()
+	_clear_meshes()
 	dungeon_grid.clear()
 	branch_candidates.clear()
 	
@@ -349,6 +353,12 @@ func _clear_dungeon_rooms() -> void:
 	for child in get_children():
 		child.free()
 		
+		
+func _clear_meshes() -> void:
+	if final_mesh_root_node:
+		final_mesh_root_node.free()
+		final_mesh_root_node = null
+
 
 func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 	var column: int = dungeon_room.column
@@ -416,8 +426,39 @@ func generate_collisions_on_room_mesh(room_mesh_instance: RoomMesh) -> void:
 
 
 func _save_rooms_as_scenes() -> void:
-	pass
-
+	if final_mesh_root_node == null:
+		push_warning("DungeonGenerator ⚠️: No generated meshes found to save as scene files")
+		return
+		
+	if not DirAccess.dir_exists_absolute(output_scenes_folder):
+		
+		if DirAccess.make_dir_recursive_absolute(output_scenes_folder) != OK:
+			push_error("DungeonGenerator ❌: An error %d ocurred when creating output folder %s " % output_scenes_folder)
+			return
+	
+	var local_folder: String = output_scenes_folder + "/dungeon_meshes_%d" % DirAccess.get_directories_at(output_scenes_folder).size()
+	
+	if DirAccess.make_dir_recursive_absolute(local_folder) != OK:
+			push_error("DungeonGenerator ❌: An error %d ocurred when creating output folder %s " % local_folder)
+			return
+			
+	for room: RoomMesh in final_mesh_root_node.get_children():
+		var target_room: RoomMesh = room.duplicate()
+		target_room.position = Vector3.ZERO
+		
+		for child: Node in RoomCreatorPluginUtilities.get_all_children(target_room):
+			child.owner = target_room
+			
+		var scene: PackedScene = PackedScene.new()
+		var result = scene.pack(target_room)
+	
+		if result == OK:
+			var error = ResourceSaver.save(scene, "%s/%s.tscn" % [local_folder, room.name.to_snake_case()])
+			if error != OK:
+				push_error("RoomCreator ❌: An error %d occurred while saving the scene %s to %s" % [error, room.name, output_scenes_folder])
+		
+	EditorInterface.get_resource_filesystem().scan()
+	
 
 class DungeonRoom:
 	var is_entrance: bool = false:
