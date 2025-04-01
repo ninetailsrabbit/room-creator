@@ -12,6 +12,7 @@ var left_wall: CSGShape3D
 var right_wall: CSGShape3D
 
 var materials_by_room_part: Dictionary ##  CSGShape and the surface related index
+var doors: Array[CSGShape3D] = []
 
 
 func _enter_tree() -> void:
@@ -119,12 +120,12 @@ func walls() -> Array[CSGShape3D]:
 	
 	return result
 
-func doors() -> Array[CSGShape3D]:
-	var result: Array[CSGShape3D] = []
-	result.assign(get_children(true).filter(func(child: Node): return child.name.contains("door")))
 
-	
-	return result
+#func doors() -> Array[CSGShape3D]:
+	#var result: Array[CSGShape3D] = []
+	#result.assign(get_children(true).filter(func(child: Node): return child.name.containsn("door")))
+	#
+	#return result
 
 
 func available_sockets() -> Array[Marker3D]:
@@ -187,6 +188,9 @@ func create_door_slot_in_wall(wall: CSGShape3D, socket_number: int = 1, size: Ve
 		door_slot.rotation = door_rotation
 		
 		wall.add_child(door_slot)
+		
+		if not doors.has(door_slot):
+			doors.append(door_slot)
 		
 		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(door_slot)
 		
@@ -421,10 +425,8 @@ func change_back_wall_material(new_material: StandardMaterial3D) -> CSGRoom:
 	
 	
 func change_doors_material(new_material: StandardMaterial3D) -> CSGRoom:
-	var room_doors = doors()
-	
-	if room_doors.size():
-		for door in room_doors:
+	if doors.size():
+		for door in doors:
 			door.material = new_material
 	
 	return self
