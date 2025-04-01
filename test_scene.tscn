@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://x3rctj7qbpxv"]
+[gd_scene load_steps=143 format=3 uid="uid://x3rctj7qbpxv"]
 
 [ext_resource type="Script" uid="uid://bx7d4gduxk7xb" path="res://addons/ninetailsrabbit.room_creator/src/dungeon/dungeon_generator.gd" id="1_uhqqe"]
 [ext_resource type="Script" uid="uid://2l3eouu555am" path="res://addons/ninetailsrabbit.room_creator/src/room_configuration.gd" id="2_sasra"]
+[ext_resource type="Script" uid="uid://bsuq4gn5kdrie" path="res://addons/ninetailsrabbit.room_creator/src/csg_room.gd" id="3_sasra"]
 
 [sub_resource type="Resource" id="Resource_ia1lp"]
 script = ExtResource("2_sasra")
@@ -31,10 +32,1531 @@ door_in_front_wall = false
 door_in_back_wall = true
 metadata/_custom_type_script = "uid://2l3eouu555am"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sasra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coq8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nij2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cbxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pr8v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_buypi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njel3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vr1i5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpuu0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo8pe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gito"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbuy2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0k8yu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiucn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6its"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dw41"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykxp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6y4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvxhv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h1ut"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m80x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqn77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22oil"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7tmn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b11sm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfkbt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_077gh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qgi0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kp7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fq6b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy8sc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nf64"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxsde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5xgu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rygqd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k62k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akknq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chy0g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pknf1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6ixm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvjxf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ufot"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s0rx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7slq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goxur"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r20rb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tal70"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxtnk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0usuw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r1gn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqor5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1npgw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjec4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i656l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0eye"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcaep"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hovis"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfx48"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br0es"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdgl2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cc2du"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksmh3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qysg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwv2r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0c0kg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce2j5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07h2o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxqmf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dqf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt6dt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukrkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yma6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alayo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67jgt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0a07"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlltl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32j7d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om76e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e62xm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8teh6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7eqx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5dbt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8lgp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs5fb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcdpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5bf66"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um21n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6doi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81itu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eab7x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in01r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56frj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hft18"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31kjb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0smd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejp4i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asydk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hxmh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1bl2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4a8f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hslgk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpilw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j3iq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkn6h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gew2e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsvlt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpjsm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcyy4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1eklc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4e1q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jd75"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvmka"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_earga"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u0kk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23ppj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6woj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndshy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pq8u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qloh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss7gr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayjc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qyu0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lotnt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4x1w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubjfc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbd2o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g04go"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_288we"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enqjs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlwnw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5swc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls74g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jif60"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2envh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3pqhr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7dyg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wl51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_173r5"]
+
 [node name="TestScene" type="Node3D"]
 
 [node name="DungeonGenerator" type="Node3D" parent="."]
 script = ExtResource("1_uhqqe")
 room_configuration = SubResource("Resource_ia1lp")
+dungeon_dimension = Vector2i(20, 40)
+critical_path_length = 20
+branches = 5
+branch_length = Vector2i(2, 5)
 output_scenes_folder = "res://scenes"
 metadata/_custom_type_script = "uid://bx7d4gduxk7xb"
+
+[node name="DungeonRoomEntrance" type="CSGCombiner3D" parent="DungeonGenerator"]
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_sasra")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_coq8p")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_2nij2")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_7cbxl")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_8pr8v")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomEntrance/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_buypi")
+
+[node name="DungeonRoom" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15, 0, 0)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_njel3")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_vr1i5")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_rpuu0")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_oo8pe")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_4gito")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_fbuy2")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom17" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, 0)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_0k8yu")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_hiucn")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_k6its")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom17/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_2dw41")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ykxp3")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom17/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_g6y4b")
+
+[node name="DungeonRoom18" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.05, 0, 0)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_pvxhv")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_6h1ut")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_6m80x")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom18/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_cqn77")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_22oil")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_p7tmn")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom18/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom18/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom1" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15, 0, -7.15)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_b11sm")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_mfkbt")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_077gh")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_5qgi0")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom1/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_7kp7o")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom1/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_8fq6b")
+
+[node name="DungeonRoom2" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3, 0, -7.15)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_oy8sc")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_2nf64")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_sxsde")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_r5xgu")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_rygqd")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom2/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_8k62k")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom2/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom2/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom3" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.45, 0, -7.15)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_akknq")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_chy0g")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_pknf1")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom3/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_b6ixm")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_lvjxf")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_1ufot")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom3/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom3/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom16" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, -7.15)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_5s0rx")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_x7slq")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_goxur")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom16/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_r20rb")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom16/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_tal70")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_jxtnk")
+
+[node name="DungeonRoomExit" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.05, 0, -7.15)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_0usuw")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_4r1gn")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_vqor5")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_1npgw")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomExit/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_fjec4")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_i656l")
+
+[node name="DungeonRoom4" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.45, 0, -14.3)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_j0eye")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_jcaep")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_hovis")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom4/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_tfx48")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom4/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_br0es")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_hdgl2")
+
+[node name="DungeonRoomBranch3" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, -14.3)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_cc2du")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_ksmh3")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_2qysg")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch3/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_xwv2r")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_0c0kg")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ce2j5")
+
+[node name="DungeonRoomBranch1" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, -14.3)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_07h2o")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_sxqmf")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_8dqf8")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch1/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_gt6dt")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch1/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ukrkd")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_0yma6")
+
+[node name="DungeonRoom5" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.45, 0, -21.45)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_alayo")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_67jgt")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_n0a07")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_nlltl")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom5/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_32j7d")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom5/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_om76e")
+
+[node name="DungeonRoomBranch2" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6, 0, -21.45)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_e62xm")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_8teh6")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_i7eqx")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch2/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_j5dbt")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_b8lgp")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 3" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch2/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_fs5fb")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch2/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch2/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoomBranch4" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, -21.45)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_fcdpl")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_5bf66")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_um21n")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch4/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_r6doi")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch4/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_81itu")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_eab7x")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch4/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 3" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch4/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoomBranch0" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, -21.45)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_in01r")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_56frj")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_hft18")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_31kjb")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch0/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_g0smd")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch0/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ejp4i")
+
+[node name="DungeonRoom13" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.05, 0, -21.45)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_asydk")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_2hxmh")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_i1bl2")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom13/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_s4a8f")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_hslgk")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_tpilw")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom13/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom13/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom7" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6, 0, -28.6)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_2j3iq")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_bkn6h")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_gew2e")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_bsvlt")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom7/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_vpjsm")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom7/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_mcyy4")
+
+[node name="DungeonRoomBranch5" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, -28.6)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_1eklc")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_u4e1q")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_3jd75")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch5/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_uvmka")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch5/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_earga")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_7u0kk")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoomBranch5/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 3" type="Marker3D" parent="DungeonGenerator/DungeonRoomBranch5/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom11" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, -28.6)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_23ppj")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_q6woj")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_ndshy")
+
+[node name="FrontWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom11/FrontWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.075)
+metadata/connected = false
+metadata/wall = &"FrontWall"
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_5pq8u")
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_0qloh")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom11/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ss7gr")
+
+[node name="DungeonRoom12" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.05, 0, -28.6)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_ayjc6")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_8qyu0")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_lotnt")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_p4x1w")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom12/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ubjfc")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_gbd2o")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom12/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom12/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"
+
+[node name="DungeonRoom9" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, -35.75)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_g04go")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_288we")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_enqjs")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_dlwnw")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom9/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_j5swc")
+
+[node name="RightWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9/RightWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom9/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"RightWall"
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_ls74g")
+
+[node name="DungeonRoom10" type="CSGCombiner3D" parent="DungeonGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9, 0, -35.75)
+script = ExtResource("3_sasra")
+configuration = SubResource("Resource_ia1lp")
+
+[node name="Floor" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_jif60")
+
+[node name="Ceil" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(5.2, 0.1, 7.2)
+material = SubResource("StandardMaterial3D_2envh")
+
+[node name="FrontWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_3pqhr")
+
+[node name="BackWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.5)
+size = Vector3(5, 4, 0.15)
+material = SubResource("StandardMaterial3D_a7dyg")
+
+[node name="BackWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 1" type="Marker3D" parent="DungeonGenerator/DungeonRoom10/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+metadata/connected = false
+metadata/wall = &"BackWall"
+
+[node name="RightWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_7wl51")
+
+[node name="LeftWall" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, 0)
+size = Vector3(0.15, 4, 7)
+material = SubResource("StandardMaterial3D_173r5")
+
+[node name="LeftWallDoorSlot" type="CSGBox3D" parent="DungeonGenerator/DungeonRoom10/LeftWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2, 0.25)
+
+[node name="RoomSocket 2" type="Marker3D" parent="DungeonGenerator/DungeonRoom10/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.1, 0)
+metadata/connected = false
+metadata/wall = &"LeftWall"

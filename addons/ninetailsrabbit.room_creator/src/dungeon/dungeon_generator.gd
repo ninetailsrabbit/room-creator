@@ -99,7 +99,7 @@ func generate_dungeon() -> void:
 	setup_exit_materials()
 	setup_path_materials()
 	setup_branch_materials()
-	
+		
 
 func setup_entrance_materials() -> void:
 	var entrance_dungeon_room: DungeonRoom = entrance_room()
@@ -108,16 +108,16 @@ func setup_entrance_materials() -> void:
 		if entrance_room_materials.size():
 			var room_materials: RoomMaterials = entrance_room_materials.pick_random() as RoomMaterials
 			
-			entrance_dungeon_room.room.change_ceil_material(room_materials.ceil_material)
-			entrance_dungeon_room.room.change_floor_material(room_materials.floor_material)
-			entrance_dungeon_room.room.change_left_wall_material(room_materials.left_wall_material)
-			entrance_dungeon_room.room.change_right_wall_material(room_materials.right_wall_material)
-			entrance_dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
-			entrance_dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
-			entrance_dungeon_room.room.change_doors_material(room_materials.door_material)
-			entrance_dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
-			entrance_dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
-			
+			entrance_dungeon_room.room.change_ceil_material(room_materials.ceil_material)\
+				.change_floor_material(room_materials.floor_material)\
+				.change_left_wall_material(room_materials.left_wall_material)\
+				.change_right_wall_material(room_materials.right_wall_material)\
+				.change_front_wall_material(room_materials.front_wall_material)\
+				.change_back_wall_material(room_materials.back_wall_material)\
+				.change_doors_material(room_materials.door_material)\
+				.change_ceil_columns_material(room_materials.ceil_columns_material)\
+				.change_corner_columns_material(room_materials.corner_columns_material)
+				
 
 func setup_exit_materials() -> void:
 	var exit_dungeon_room: DungeonRoom = exit_room()
@@ -126,15 +126,15 @@ func setup_exit_materials() -> void:
 		if exit_room_materials.size():
 			var room_materials: RoomMaterials = exit_room_materials.pick_random() as RoomMaterials
 			
-			exit_dungeon_room.room.change_ceil_material(room_materials.ceil_material)
-			exit_dungeon_room.room.change_floor_material(room_materials.floor_material)
-			exit_dungeon_room.room.change_left_wall_material(room_materials.left_wall_material)
-			exit_dungeon_room.room.change_right_wall_material(room_materials.right_wall_material)
-			exit_dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
-			exit_dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
-			exit_dungeon_room.room.change_doors_material(room_materials.door_material)
-			exit_dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
-			exit_dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			exit_dungeon_room.room.change_ceil_material(room_materials.ceil_material)\
+				.change_floor_material(room_materials.floor_material)\
+				.change_left_wall_material(room_materials.left_wall_material)\
+				.change_right_wall_material(room_materials.right_wall_material)\
+				.change_front_wall_material(room_materials.front_wall_material)\
+				.change_back_wall_material(room_materials.back_wall_material)\
+				.change_doors_material(room_materials.door_material)\
+				.change_ceil_columns_material(room_materials.ceil_columns_material)\
+				.change_corner_columns_material(room_materials.corner_columns_material)
 			
 
 func setup_path_materials() -> void:
@@ -142,15 +142,15 @@ func setup_path_materials() -> void:
 		for dungeon_room: DungeonRoom in path_rooms():
 			var room_materials: RoomMaterials = path_room_materials.pick_random() as RoomMaterials
 			
-			dungeon_room.room.change_ceil_material(room_materials.ceil_material)
-			dungeon_room.room.change_floor_material(room_materials.floor_material)
-			dungeon_room.room.change_left_wall_material(room_materials.left_wall_material)
-			dungeon_room.room.change_right_wall_material(room_materials.right_wall_material)
-			dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
-			dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
-			dungeon_room.room.change_doors_material(room_materials.door_material)
-			dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
-			dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			dungeon_room.room.change_ceil_material(room_materials.ceil_material)\
+				.change_floor_material(room_materials.floor_material)\
+				.change_left_wall_material(room_materials.left_wall_material)\
+				.change_right_wall_material(room_materials.right_wall_material)\
+				.change_front_wall_material(room_materials.front_wall_material)\
+				.change_back_wall_material(room_materials.back_wall_material)\
+				.change_doors_material(room_materials.door_material)\
+				.change_ceil_columns_material(room_materials.ceil_columns_material)\
+				.change_corner_columns_material(room_materials.corner_columns_material)
 			
 
 func setup_branch_materials() -> void:
@@ -158,22 +158,21 @@ func setup_branch_materials() -> void:
 		for dungeon_room: DungeonRoom in branch_rooms():
 			var room_materials: RoomMaterials = branch_room_materials.pick_random() as RoomMaterials
 			
-			dungeon_room.room.change_ceil_material(room_materials.ceil_material)
-			dungeon_room.room.change_floor_material(room_materials.floor_material)
-			dungeon_room.room.change_left_wall_material(room_materials.left_wall_material)
-			dungeon_room.room.change_right_wall_material(room_materials.right_wall_material)
-			dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
-			dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
-			dungeon_room.room.change_doors_material(room_materials.door_material)
-			dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
-			dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			dungeon_room.room.change_ceil_material(room_materials.ceil_material)\
+				.change_floor_material(room_materials.floor_material)\
+				.change_left_wall_material(room_materials.left_wall_material)\
+				.change_right_wall_material(room_materials.right_wall_material)\
+				.change_front_wall_material(room_materials.front_wall_material)\
+				.change_back_wall_material(room_materials.back_wall_material)\
+				.change_doors_material(room_materials.door_material)\
+				.change_ceil_columns_material(room_materials.ceil_columns_material)\
+				.change_corner_columns_material(room_materials.corner_columns_material)
 			
 
 func create_dungeon_rooms() -> void:
 	for room: DungeonRoom in RoomCreatorPluginUtilities.flatten(dungeon_grid)\
-		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.branch != -1 or room.is_entrance):
+		.filter(func(room: DungeonRoom): return room.critical_path != -1 or room.branch != -1 or room.is_entrance or room.is_exit):
 			
-		room.is_exit = room.critical_path == critical_path_length - 1
 		add_room_to_tree(room)
 
 
@@ -214,12 +213,14 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 			and target_position.x < dungeon_grid.size() and target_position.y < dungeon_grid[target_position.x].size() \
 			and (dungeon_grid[target_position.x][target_position.y].critical_path == -1 or (is_branch and dungeon_grid[target_position.x][target_position.y].branch == -1) ):
 				
+				var room: DungeonRoom = dungeon_grid[target_position.x][target_position.y]
 				current = target_position
 				
 				if is_branch:
-					dungeon_grid[target_position.x][target_position.y].branch = total_length - length
+					room.branch = total_length - length
 				else:
-					dungeon_grid[target_position.x][target_position.y].critical_path = total_length - length
+					room.critical_path = total_length - length
+					room.is_exit = room.critical_path == critical_path_length - 1
 			
 				if length > 1:
 					branch_candidates.append(current)
@@ -229,11 +230,12 @@ func generate_critical_path(from: Vector2i, total_length: int, length: int, is_b
 				else:
 					
 					if is_branch:
-						dungeon_grid[target_position.x][target_position.y].branch = -1
+						room.branch = -1
 					else:
 						branch_candidates.erase(target_position)
-						dungeon_grid[target_position.x][target_position.y].critical_path = -1
-						
+						room.critical_path = -1
+						room.is_exit = false
+					
 					current -= direction
 		
 		direction = Vector2i(direction.y, -direction.x)
