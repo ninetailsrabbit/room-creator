@@ -1,7 +1,7 @@
 class_name RoomConfiguration extends Resource
 
 ## The dimensions of the room where Vector3(width, height, depth)
-@export var room_size: Vector3 = Vector3(5, 4, 7)
+@export var room_size: Vector3 = Vector3(5.0, 4.0, 7.0)
 ## Generate a standard material named with the room part that belongs
 @export var generate_materials: bool = true
 @export_group("Thickness")

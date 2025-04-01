@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RoomMaterials" load_steps=3 format=3 uid="uid://rxvf355gk0vn"]
+
+[ext_resource type="Material" uid="uid://c7y67djuoqiwq" path="res://addons/ninetailsrabbit.room_creator/src/debug_colors/entrance.tres" id="1_6funp"]
+[ext_resource type="Script" uid="uid://ca4j3w55oyd23" path="res://addons/ninetailsrabbit.room_creator/src/dungeon/room_materials.gd" id="2_d7tco"]
+
+[resource]
+script = ExtResource("2_d7tco")
+id = &"green_debug"
+ceil_material = ExtResource("1_6funp")
+floor_material = ExtResource("1_6funp")
+left_wall_material = ExtResource("1_6funp")
+right_wall_material = ExtResource("1_6funp")
+back_wall_material = ExtResource("1_6funp")
+front_wall_material = ExtResource("1_6funp")
+door_material = ExtResource("1_6funp")
+metadata/_custom_type_script = "uid://ca4j3w55oyd23"

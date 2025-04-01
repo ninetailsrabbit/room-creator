@@ -356,7 +356,6 @@ func name_surfaces_on_combined_mesh(root_node_for_rooms: CSGCombiner3D, room_mes
 func name_surfaces_on_room_mesh(room: CSGRoom, room_mesh_instance: MeshInstance3D) -> void:
 	print(room_mesh_instance.mesh)
 	for shape: CSGShape3D in room.materials_by_room_part:
-		print("NAME SURFACES ", shape.name, room.materials_by_room_part[shape])
 		room_mesh_instance.mesh.surface_set_name(room.materials_by_room_part[shape], shape.name)
 
 

@@ -1,8 +1,11 @@
 @tool
 class_name DungeonGenerator extends Node3D
 
-@export_tool_button("Generate dungeon") var generate_dungeon_action = generate_dungeon
-@export_tool_button("Clear dungeon") var clear_dungeon_action = _clear_dungeon_rooms
+@export_tool_button("Generate dungeon") var generate_dungeon_action: Callable = generate_dungeon
+@export_tool_button("Clear dungeon") var clear_dungeon_action: Callable = _clear_dungeon_rooms
+@export_tool_button("Toggle ceils visibility") var toggle_ceil_action: Callable = _toggle_ceils
+@export_tool_button("Generate final mesh") var generate_final_mesh_action: Callable = _generate_final_mesh
+@export_tool_button("Save rooms as scenes") var save_rooms_as_scenes: Callable = _save_rooms_as_scenes
 ## Dungeon room configuration
 @export var room_configuration: RoomConfiguration
 ## Dimensions in the format Vector2i(column, row)
@@ -22,17 +25,26 @@ class_name DungeonGenerator extends Node3D
 	set(value):
 		randomize_entrance = value
 		notify_property_list_changed()
+@export var generate_collisions_on_mesh: bool = true
+
 @export_group("Materials")
 @export var entrance_room_materials: Array[RoomMaterials] = []
 @export var exit_room_materials: Array[RoomMaterials] = []
 @export var path_room_materials: Array[RoomMaterials] = []
 @export var branch_room_materials: Array[RoomMaterials] = []
 
+enum MeshGenerationMode {
+	MeshPerRoom,
+	OneCombinedMesh
+}
+
 var directions_v2: Array[Vector2i]= [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN]
 
 var dungeon_grid: Array = []
 var entrance: Vector2i
 var branch_candidates: Array[Vector2i] = []
+
+var final_mesh_root_node: Node3D
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -134,7 +146,7 @@ func setup_path_materials() -> void:
 func setup_branch_materials() -> void:
 	if branch_room_materials.size():
 		for dungeon_room: DungeonRoom in branch_rooms():
-			var room_materials: RoomMaterials = path_room_materials.pick_random() as RoomMaterials
+			var room_materials: RoomMaterials = branch_room_materials.pick_random() as RoomMaterials
 			
 			dungeon_room.room.change_ceil_material(room_materials.ceil_material)
 			dungeon_room.room.change_floor_material(room_materials.floor_material)
@@ -221,6 +233,7 @@ func add_room_to_tree(dungeon_room: DungeonRoom) -> void:
 	_setup_room_doors(dungeon_room)
 	add_child(dungeon_room.room)
 	
+	dungeon_room.assign_name()
 	dungeon_room.room.create_manual_doors()
 	dungeon_room.room.position = Vector3(
 		dungeon_room.row * room_configuration.room_size.x, 
@@ -244,16 +257,26 @@ func entrance_room() -> DungeonRoom:
 		return null
 		
 	return RoomCreatorPluginUtilities.flatten(dungeon_grid).filter(
-		func(room: DungeonRoom): return room.is_entrance).front()
+		func(room: DungeonRoom): return room.is_entrance).front() as DungeonRoom
 
 
 func exit_room() -> DungeonRoom:
 	if dungeon_grid.is_empty():
 		return null
 		
-	return RoomCreatorPluginUtilities.flatten(dungeon_grid.filter(
-		func(room: DungeonRoom): return room.is_entrance).front())
+	return RoomCreatorPluginUtilities.flatten(dungeon_grid).filter(
+		func(room: DungeonRoom): return room.is_exit).front() as DungeonRoom
 
+
+func inside_tree_rooms() -> Array[DungeonRoom]:
+	var rooms: Array[DungeonRoom] = []
+	rooms.assign(RoomCreatorPluginUtilities\
+		.flatten(dungeon_grid)\
+		.filter(func(room: DungeonRoom): return room.room.is_inside_tree())
+	)
+	
+	return rooms
+	
 
 func border_rooms() -> Array[DungeonRoom]:
 	var rooms: Array[DungeonRoom] = []
@@ -264,31 +287,20 @@ func border_rooms() -> Array[DungeonRoom]:
 	
 	return rooms
 
-
-func pick_random_border_room() -> Vector2i:
-	var dungeon_borders: Array[Vector2i] = border_rooms()\
-		.map(func(room: DungeonRoom): return room.grid_position())
-
-	return dungeon_borders.pick_random()
-	
 	
 func branch_rooms() -> Array[DungeonRoom]:
 	var rooms: Array[DungeonRoom] = []
 	rooms.assign(RoomCreatorPluginUtilities\
 		.flatten(dungeon_grid)\
-		.filter(func(room: DungeonRoom): return room.branch != -1 and not room.is_entrance and not room.is_exit)
+		.filter(
+			func(room: DungeonRoom): 
+				return room.branch > 0 and not room.is_entrance and not room.is_exit
+				)
 	)
 	
 	return rooms
 	
 
-func pick_random_branch_room() -> Vector2i:
-	var dungeon_borders: Array[Vector2i] = branch_rooms()\
-		.map(func(room: DungeonRoom): return room.grid_position())
-
-	return dungeon_borders.pick_random()
-	
-	
 func path_rooms() -> Array[DungeonRoom]:
 	var result: Array[DungeonRoom] = []
 	result.assign(
@@ -298,6 +310,20 @@ func path_rooms() -> Array[DungeonRoom]:
 			)
 	
 	return result
+	
+
+func pick_random_border_room() -> Vector2i:
+	var dungeon_borders: Array[Vector2i] = border_rooms()\
+		.map(func(room: DungeonRoom): return room.grid_position())
+
+	return dungeon_borders.pick_random()
+	
+
+func pick_random_branch_room() -> Vector2i:
+	var dungeon_borders: Array[Vector2i] = branch_rooms()\
+		.map(func(room: DungeonRoom): return room.grid_position())
+
+	return dungeon_borders.pick_random()
 	
 
 func border_positions(dungeon_dungeon_dimension: Vector2i = dungeon_dimension) -> Array[Vector2i]:
@@ -311,6 +337,14 @@ func border_positions(dungeon_dungeon_dimension: Vector2i = dungeon_dimension) -
 	return borders
 
 
+func _toggle_ceils() -> void:
+	for room: DungeonRoom in RoomCreatorPluginUtilities\
+		.flatten(dungeon_grid)\
+		.filter(func(dungeon_room: DungeonRoom): return dungeon_room.room.is_inside_tree()):
+		
+		room.room.toggle_ceil_visibility()
+	
+	
 func _clear_dungeon_rooms() -> void:
 	for child in get_children():
 		child.free()
@@ -335,6 +369,56 @@ func _setup_room_doors(dungeon_room: DungeonRoom) -> void:
 		and dungeon_room.critical_path_neighbour_of(bottom_room) or dungeon_room.branch_path_neighbour_of(bottom_room)
 
 
+func _generate_final_mesh() -> void:
+	var rooms: Array[DungeonRoom] = inside_tree_rooms()
+	
+	if rooms.size():
+		if final_mesh_root_node:
+			final_mesh_root_node.free()
+			final_mesh_root_node = null
+		
+		final_mesh_root_node = Node3D.new()
+		final_mesh_root_node.name = "DungeonRoomMesh"
+		add_child(final_mesh_root_node)
+		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(final_mesh_root_node)
+		
+		for dungeon_room: DungeonRoom in rooms:
+			dungeon_room.room.show_ceil()
+			await get_tree().physics_frame
+			var room_mesh_instance: RoomMesh = dungeon_room.room.generate_mesh_instance() as RoomMesh
+			
+			if room_mesh_instance:
+				final_mesh_root_node.add_child(room_mesh_instance)
+				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
+				name_surfaces_on_room_mesh(dungeon_room.room, room_mesh_instance)
+				
+				if generate_collisions_on_mesh:
+					generate_collisions_on_room_mesh(room_mesh_instance)
+
+
+func name_surfaces_on_room_mesh(room: CSGRoom, room_mesh_instance: MeshInstance3D) -> void:
+	for shape: CSGShape3D in room.materials_by_room_part:
+		room_mesh_instance.mesh.surface_set_name(room.materials_by_room_part[shape], shape.name)
+
+
+func generate_collisions_on_room_mesh(room_mesh_instance: RoomMesh) -> void:
+	var trimesh_collision = CollisionShape3D.new()
+	trimesh_collision.name = "%sTrimeshCollision" % room_mesh_instance.name
+	trimesh_collision.shape = room_mesh_instance.mesh.create_trimesh_shape()
+
+	var body = StaticBody3D.new()
+	body.name = "%sStaticBody3D" % room_mesh_instance.name
+	room_mesh_instance.add_child(body)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(body)
+	body.add_child(trimesh_collision)
+	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(trimesh_collision)
+
+
+
+func _save_rooms_as_scenes() -> void:
+	pass
+
+
 class DungeonRoom:
 	var is_entrance: bool = false:
 		set(value):
@@ -354,6 +438,23 @@ class DungeonRoom:
 		row = _row
 		dungeon_dimension = _dungeon_dimension
 	
+	
+	func room_name() -> String:
+		if is_entrance:
+			return "DungeonRoomEntrance"
+		elif is_exit:
+			return "DungeonRoomExit"
+		elif critical_path and branch == -1:
+			return "DungeonRoom%d" % critical_path
+		elif branch != -1:
+			return "DungeonRoomBranch%d" % branch
+		else:
+			return "DungeonRoom"
+	
+	
+	func assign_name() -> void:
+		if room:
+			room.name = room_name()
 	
 	func grid_position() -> Vector2i:
 		return Vector2i(column, row)

@@ -430,3 +430,53 @@ func change_doors_material(new_material: StandardMaterial3D) -> CSGRoom:
 	return self
 
 #endregion
+
+#region Visibility
+func show_ceil() -> CSGRoom:
+	if ceil_side:
+		ceil_side.show()
+	
+	return self
+
+
+func toggle_ceil_visibility() -> CSGRoom:
+	if ceil_side:
+		ceil_side.visible = !ceil_side.visible
+	
+	return self
+
+
+func toggle_floor_visibility() -> CSGRoom:
+	if floor_side:
+		floor_side.visible = !floor_side.visible
+	
+	return self
+
+
+func toggle_left_wall_visibility() -> CSGRoom:
+	if left_wall:
+		left_wall.visible = !left_wall.visible
+	
+	return self
+
+
+func toggle_right_wall_visibility() -> CSGRoom:
+	if right_wall:
+		right_wall.visible = !right_wall.visible
+	
+	return self
+
+
+func toggle_front_wall_visibility() -> CSGRoom:
+	if front_wall:
+		front_wall.visible = !front_wall.visible
+	
+	return self
+
+func toggle_back_wall_visibility() -> CSGRoom:
+	if back_wall:
+		back_wall.visible = !back_wall.visible
+	
+	return self
+
+#endregion
