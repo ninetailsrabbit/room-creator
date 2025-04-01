@@ -110,12 +110,19 @@ func generate_mesh_instance():
 	
 	return null
 
-#region Getters	
+#region Getters
 func walls() -> Array[CSGShape3D]:
 	var result: Array[CSGShape3D] = []
 
 	for wall: CSGShape3D in RoomCreatorPluginUtilities.remove_falsy_values([front_wall, back_wall, right_wall, left_wall]):
 		result.append(wall)
+	
+	return result
+
+func doors() -> Array[CSGShape3D]:
+	var result: Array[CSGShape3D] = []
+	result.assign(get_children(true).filter(func(child: Node): return child.name.contains("door")))
+
 	
 	return result
 
@@ -367,5 +374,59 @@ func create_left_wall(size: Vector3 = configuration.room_size) -> void:
 	
 	add_child(left_wall)
 	RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(left_wall)
+
+#endregion
+
+#region Materials
+func change_ceil_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if ceil_side:
+		ceil_side.material = new_material
+	
+	return self
+	
+
+func change_floor_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if floor_side:
+		floor_side.material = new_material
+	
+	return self
+
+
+func change_left_wall_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if left_wall:
+		left_wall.material = new_material
+	
+	return self
+
+
+func change_right_wall_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if right_wall:
+		right_wall.material = new_material
+	
+	return self
+
+
+func change_front_wall_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if front_wall:
+		front_wall.material = new_material
+	
+	return self
+
+
+func change_back_wall_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if back_wall:
+		back_wall.material = new_material
+	
+	return self
+	
+	
+func change_doors_material(new_material: StandardMaterial3D) -> CSGRoom:
+	var room_doors = doors()
+	
+	if room_doors.size():
+		for door in room_doors:
+			door.material = new_material
+	
+	return self
 
 #endregion
