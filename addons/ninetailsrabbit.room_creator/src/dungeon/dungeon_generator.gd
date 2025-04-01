@@ -115,6 +115,8 @@ func setup_entrance_materials() -> void:
 			entrance_dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
 			entrance_dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
 			entrance_dungeon_room.room.change_doors_material(room_materials.door_material)
+			entrance_dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
+			entrance_dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
 			
 
 func setup_exit_materials() -> void:
@@ -131,7 +133,9 @@ func setup_exit_materials() -> void:
 			exit_dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
 			exit_dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
 			exit_dungeon_room.room.change_doors_material(room_materials.door_material)
-
+			exit_dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
+			exit_dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			
 
 func setup_path_materials() -> void:
 	if path_room_materials.size():
@@ -145,7 +149,9 @@ func setup_path_materials() -> void:
 			dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
 			dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
 			dungeon_room.room.change_doors_material(room_materials.door_material)
-
+			dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
+			dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			
 
 func setup_branch_materials() -> void:
 	if branch_room_materials.size():
@@ -159,7 +165,9 @@ func setup_branch_materials() -> void:
 			dungeon_room.room.change_front_wall_material(room_materials.front_wall_material)
 			dungeon_room.room.change_back_wall_material(room_materials.back_wall_material)
 			dungeon_room.room.change_doors_material(room_materials.door_material)
-
+			dungeon_room.room.change_ceil_columns_material(room_materials.ceil_columns_material)
+			dungeon_room.room.change_corner_columns_material(room_materials.corner_columns_material)
+			
 
 func create_dungeon_rooms() -> void:
 	for room: DungeonRoom in RoomCreatorPluginUtilities.flatten(dungeon_grid)\

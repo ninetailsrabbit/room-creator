@@ -13,6 +13,8 @@ var right_wall: CSGShape3D
 
 var materials_by_room_part: Dictionary ##  CSGShape and the surface related index
 var doors: Array[CSGShape3D] = []
+var corner_columns: Array[CSGShape3D] = []
+var ceil_columns: Array[CSGShape3D] = []
 
 
 func _enter_tree() -> void:
@@ -233,6 +235,8 @@ func create_ceil_columns(size: Vector3 = configuration.room_size) -> void:
 	ceil_column_substraction.position = Vector3.ZERO
 	ceil_column_base.position.y -= min(configuration.ceil_column_height, configuration.ceil_column_thickness) - configuration.ceil_thickness * 2
 	
+	ceil_columns.append_array([ceil_column_base, ceil_column_substraction])
+
 
 func create_corner_columns(size: Vector3 = configuration.room_size) -> void:
 	var adjustment_thickness = configuration.corner_column_thickness / 2.0 + configuration.wall_thickness / 2.0
@@ -242,7 +246,9 @@ func create_corner_columns(size: Vector3 = configuration.room_size) -> void:
 	var top_left_column: CSGBox3D = CSGBox3D.new()
 	var bottom_right_column: CSGBox3D = CSGBox3D.new()
 	var bottom_left_column: CSGBox3D = CSGBox3D.new()
-
+	
+	corner_columns.append_array([top_right_column, top_left_column, bottom_right_column, bottom_left_column])
+	
 	top_right_column.name = "TopRightCornerColumn"
 	top_right_column.size = column_size
 	
@@ -428,6 +434,21 @@ func change_doors_material(new_material: StandardMaterial3D) -> CSGRoom:
 	if doors.size():
 		for door in doors:
 			door.material = new_material
+	
+	return self
+
+func change_corner_columns_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if corner_columns.size():
+		for column in corner_columns:
+			column.material = new_material
+	
+	return self
+
+
+func change_ceil_columns_material(new_material: StandardMaterial3D) -> CSGRoom:
+	if ceil_columns.size():
+		for column in ceil_columns:
+			column.material = new_material
 	
 	return self
 
