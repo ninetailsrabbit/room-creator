@@ -123,11 +123,11 @@ func walls() -> Array[CSGShape3D]:
 	return result
 
 
-#func doors() -> Array[CSGShape3D]:
-	#var result: Array[CSGShape3D] = []
-	#result.assign(get_children(true).filter(func(child: Node): return child.name.containsn("door")))
-	#
-	#return result
+func door_positions() -> Array[Vector3]:
+	var positions: Array[Vector3] = []
+	positions.assign(doors.map(func(door: CSGShape3D): return door.global_position))
+	
+	return positions
 
 
 func available_sockets() -> Array[Marker3D]:

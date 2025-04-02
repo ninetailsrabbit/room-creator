@@ -47,7 +47,7 @@ var dungeon_grid: Array = []
 var entrance: Vector2i
 var branch_candidates: Array[Vector2i] = []
 
-var final_mesh_root_node: Node3D
+var final_mesh_root_node: Dungeon
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -397,7 +397,7 @@ func _generate_final_mesh() -> void:
 			final_mesh_root_node.free()
 			final_mesh_root_node = null
 		
-		final_mesh_root_node = Node3D.new()
+		final_mesh_root_node = Dungeon.new()
 		final_mesh_root_node.name = "DungeonRoomMesh"
 		add_child(final_mesh_root_node)
 		RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(final_mesh_root_node)
@@ -406,10 +406,20 @@ func _generate_final_mesh() -> void:
 			dungeon_room.room.show_ceil()
 			await get_tree().physics_frame
 			var room_mesh_instance: RoomMesh = dungeon_room.room.generate_mesh_instance() as RoomMesh
-			
+		
 			if room_mesh_instance:
+				if dungeon_room.is_entrance:
+					final_mesh_root_node.entrance = room_mesh_instance
+			
+				elif dungeon_room.is_exit:
+					final_mesh_root_node.exit = room_mesh_instance
+					
 				final_mesh_root_node.add_child(room_mesh_instance)
 				RoomCreatorPluginUtilities.set_owner_to_edited_scene_root(room_mesh_instance)
+				
+				room_mesh_instance.room_configuration = room_configuration.duplicate()
+				room_mesh_instance.door_positions = dungeon_room.room.door_positions().duplicate()
+				
 				name_surfaces_on_room_mesh(dungeon_room.room, room_mesh_instance)
 				
 				if generate_collisions_on_mesh:
