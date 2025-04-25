@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Room creator"
 config/description="Create basic rooms for your 3D by controlling some parameters and speeding up the process of integrating single rooms into your world"
-config/version="1.0.2"
+config/version="1.0.3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

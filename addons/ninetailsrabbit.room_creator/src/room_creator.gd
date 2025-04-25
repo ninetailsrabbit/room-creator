@@ -128,6 +128,8 @@ func create_csg_rooms() -> void:
 
 		for room_number in number_of_rooms:
 			var csg_room = create_csg_room()
+			csg_room.position = csg_rooms_created.back().position if csg_rooms_created.size() > 0 else Vector3.ZERO
+			
 			root_node.add_child(csg_room)
 			
 			if csg_rooms_created.size() > 0 and csg_room:
@@ -152,30 +154,31 @@ func create_csg_rooms() -> void:
 func create_csg_room() -> CSGRoom:
 	var is_bridge_connector: bool = use_bridge_connector_between_rooms and csg_rooms_created.size() > 0 and not csg_rooms_created.back().is_bridge_room_connector
 	var room: CSGRoom = CSGRoom.new()
+	room.configuration = RoomConfiguration.new()
 	
 	room.name = "Room%d" % csg_rooms_created.size()
 	room.position = csg_rooms_created.back().position if csg_rooms_created.size() > 0 else Vector3.ZERO
 	room.use_collision = false
 	room.is_bridge_room_connector = is_bridge_connector
-	room.room_size = generate_room_size_based_on_range(min_bridge_connector_size, max_bridge_connector_size) if is_bridge_connector else generate_room_size_based_on_range()
-	room.door_size = room_parameters.door_size
-	room.number_of_doors = 2
-	room.randomize_door_position_in_wall = room_parameters.randomize_door_position_in_wall
-	room.include_floor = include_floor
-	room.include_ceil = include_ceil
-	room.include_ceil_columns = include_ceil_columns
-	room.include_corner_columns = include_corner_columns
-	room.include_front_wall = include_front_wall
-	room.include_back_wall = include_back_wall
-	room.include_left_wall = include_left_wall
-	room.include_right_wall = include_right_wall
-	room.generate_materials = generate_materials
-	room.ceil_thickness = room_parameters.ceil_thickness
-	room.floor_thickness = room_parameters.floor_thickness
-	room.wall_thickness = room_parameters.wall_thickness
-	room.ceil_column_thickness = room_parameters.ceil_column_thickness
-	room.ceil_column_height = room_parameters.ceil_column_height
-	room.corner_column_thickness = room_parameters.corner_column_thickness
+	room.configuration.room_size = generate_room_size_based_on_range(min_bridge_connector_size, max_bridge_connector_size) if is_bridge_connector else generate_room_size_based_on_range()
+	room.configuration.door_size = room_parameters.door_size
+	room.configuration.number_of_doors = 2
+	room.configuration.randomize_door_position_in_wall = room_parameters.randomize_door_position_in_wall
+	room.configuration.include_floor = include_floor
+	room.configuration.include_ceil = include_ceil
+	room.configuration.include_ceil_columns = include_ceil_columns
+	room.configuration.include_corner_columns = include_corner_columns
+	room.configuration.include_front_wall = include_front_wall
+	room.configuration.include_back_wall = include_back_wall
+	room.configuration.include_left_wall = include_left_wall
+	room.configuration.include_right_wall = include_right_wall
+	room.configuration.generate_materials = generate_materials
+	room.configuration.ceil_thickness = room_parameters.ceil_thickness
+	room.configuration.floor_thickness = room_parameters.floor_thickness
+	room.configuration.wall_thickness = room_parameters.wall_thickness
+	room.configuration.ceil_column_thickness = room_parameters.ceil_column_thickness
+	room.configuration.ceil_column_height = room_parameters.ceil_column_height
+	room.configuration.corner_column_thickness = room_parameters.corner_column_thickness
 	
 	return room
 
